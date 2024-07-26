@@ -4,7 +4,7 @@
 using namespace std;
 
 
-
+bool isAppRunning = true;
 SDL_Window* window = nullptr;
 SDL_GLContext context = nullptr;
 
@@ -50,6 +50,14 @@ int main(int argc,char* argv[]) {
 	//=======================
 
 	//MainLoop
+	while (isAppRunning)
+	{
+
+
+
+	}
+
+
 
 	//=======================
 
