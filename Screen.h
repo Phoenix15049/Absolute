@@ -20,8 +20,8 @@ private:
 
 
 private :
-	SDL_Window* window = nullptr;
-	SDL_GLContext context = nullptr;
+	SDL_Window* window;
+	SDL_GLContext context;
 };
 
 #endif // !SCREEN_H

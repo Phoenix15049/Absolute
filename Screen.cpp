@@ -75,3 +75,9 @@ void Screen::ShutDown()
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
 }
+
+Screen::Screen()
+{
+	window = nullptr;
+	context = nullptr;
+}
