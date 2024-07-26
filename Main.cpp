@@ -1,12 +1,14 @@
+#include <Windows.h>
+#include <gl/GL.h>
 #include <iostream>
 #include <SDL.h>
+
 #include <stdio.h>
 using namespace std;
 
 
 bool isAppRunning = true;
-SDL_Window* window = nullptr;
-SDL_GLContext context = nullptr;
+
 
 int main(int argc,char* argv[]) {
 
@@ -52,9 +54,12 @@ int main(int argc,char* argv[]) {
 	//MainLoop
 	while (isAppRunning)
 	{
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		//Update and render stuff
 
 
-
+		SDL_GL_SwapWindow(window);
 	}
 
 
