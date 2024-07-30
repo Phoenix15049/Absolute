@@ -51,7 +51,10 @@ bool Screen::Initialize()
 	}
 
 
-
+	if (!gladLoadGL()) {
+		cout << "EXTENTION_ERROR,on loading extentions" << endl;
+		return false;
+	}
 
 
 

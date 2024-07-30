@@ -146,6 +146,10 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Main.frag" />
+    <None Include="Shaders\Main.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
