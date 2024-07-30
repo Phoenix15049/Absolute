@@ -1,9 +1,7 @@
-#include <Windows.h>
-#include <gl/GL.h>
 #include "Screen.h"
 #include <iostream>
 #include <stdio.h>
-
+#include "glad.h"
 using namespace std;
 
 Screen* Screen::Instance()
@@ -51,6 +49,10 @@ bool Screen::Initialize()
 		cout << "INITIALIZE_ERROR,on creating Context" << endl;
 		return false;
 	}
+
+
+
+
 
 
 	return true;
