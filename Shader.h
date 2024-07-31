@@ -15,6 +15,9 @@ public :
 		FRAGMENT_SHADER
 	};
 public:
+
+	GLuint GetShaderProgramID();
+
 	bool CreateProgram();
 	bool CreateShaders();
 

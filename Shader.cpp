@@ -12,6 +12,10 @@ Shader::Shader() {
 	m_vertexShaderID = 0;
 	m_fragmentShaderID = 0;
 }
+GLuint Shader::GetShaderProgramID()
+{
+	return m_shaderProgramID;
+}
 bool Shader::CreateProgram()
 {
 

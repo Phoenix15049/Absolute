@@ -1,9 +1,11 @@
 #version 460
 
-uniform bool isLit;
-
+in vec3 vertexIn; 
+in vec3 colorIn;
+out vec3 colorOut;
 void main(){
 
-	//ToDo
+	colorOut = colorIn;
+	gl_Position = vec4(vertexIn,1.0);
 
 }

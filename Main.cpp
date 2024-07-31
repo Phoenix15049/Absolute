@@ -33,12 +33,48 @@ int main(int argc,char* argv[]) {
 
 	float x = 0.0f;
 	float y = 0.0f;
-	float z = 0.0f;
+
+	GLfloat vertices[] = { -0.5f,0.5f,0.0f,//TRIANGLE 1
+						   0.5f,0.5f,0.0f,
+						  -0.5f,-0.5f,0.0f,
+
+						  -0.5f,-0.5f,0.0f,//TRIANGLE 2
+						   0.5f,0.5f,0.0f,
+						   0.5f,-0.5f,0.0f
+	};
 
 
-	Shader::Instance()->SendUniformData("time", 20);
+	GLfloat colors[] = {   1.0f,0.0f,0.0f,//TRIANGLE 1
+						   0.0f,0.0f,1.0f,
+						   0.0f,1.0f,1.0f,
+
+						   0.0f,1.0f,1.0f,//TRIANGLE 2
+						   0.0f,0.0f,1.0f,
+						   0.0f,1.0f,0.0f
+	};
+
+	GLuint shaderProgramID = Shader::Instance()->GetShaderProgramID();
+
+	GLint vertexID = glGetAttribLocation(shaderProgramID, "vertexIn");
+	GLint colorID = glGetAttribLocation(shaderProgramID, "colorIn");
 
 
+	GLuint vertexVBO;
+	GLuint colorVBO;
+
+	glGenBuffers(1, &vertexVBO);
+	glGenBuffers(1, &colorVBO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(vertexID,3,GL_FLOAT,GL_FALSE,0,nullptr);
+	glEnableVertexAttribArray(vertexID);
+
+
+	glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
+	glVertexAttribPointer(colorID, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+	glEnableVertexAttribArray(colorID);
 	//=======================
 
 	//MainLoop
@@ -68,31 +104,9 @@ int main(int argc,char* argv[]) {
 			if (kp == 's') {
 				y = y - 0.01f;
 			}
-			if (kp == 'e') {
-				z = z + 0.01f;
-			}
-			if (kp == 'q') {
-				z = z - 0.01f;
-			}
-
 		}
 
-		glBegin(GL_QUADS);
-
-		glColor3f(1, 0, 0);
-		glVertex3f(-0.5f+x, 0.5f+y, 0.0f+z);
-
-		glColor3f(0, 1, 0);
-		glVertex3f(1.0f+x, 0.5f+y, 0.0f+z);
-
-		glColor3f(0, 0, 1);
-		glVertex3f(0.5f+x, -0.5f+y, 0.0f+z);
-
-		glColor3f(0, 0, 1);
-		glVertex3f(-0.5f+x, -0.5f+y, 0.0f+z);
-
-		glEnd();
-
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 
 
