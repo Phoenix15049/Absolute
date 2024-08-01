@@ -7,6 +7,10 @@
 #include "Shader.h"
 #include "Quad.h"
 #include <glm.hpp>
+#include "Camera.h"
+
+
+
 using namespace std;
 
 
@@ -30,7 +34,12 @@ int main(int argc,char* argv[]) {
 
 	Shader::Instance()->AttachShaders();
 	Shader::Instance()->LinkProgram();
+	
+	
+	
 	Quad quad;
+	Camera camera;
+
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -49,23 +58,9 @@ int main(int argc,char* argv[]) {
 		
 		isAppRunning = !Input::Instance()->IsXClicked();
 		
-		/*if (Input::Instance()->IsKeyPressed()) {
-
-			char kp = Input::Instance()->GetKeyDown();
-			if (kp == 'a') {
-				x=x-0.01f;
-			}
-			if (kp == 'd') {
-				x = x + 0.01f;
-			}
-			if (kp == 'w') {
-				y = y + 0.01f;
-			}
-			if (kp == 's') {
-				y = y - 0.01f;
-			}
-		}*/
-		
+		/**/
+		camera.Update();
+		quad.Update();
 		quad.Render();
 		
 		Screen::Instance()->Present();
