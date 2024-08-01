@@ -39,7 +39,7 @@ int main(int argc,char* argv[]) {
 	
 	Quad quad;
 	Camera camera;
-
+	camera.Set3DView();
 
 	float x = 0.0f;
 	float y = 0.0f;

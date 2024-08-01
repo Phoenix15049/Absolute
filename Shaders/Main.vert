@@ -6,9 +6,10 @@ out vec3 colorOut;
 
 uniform mat4 model;
 uniform mat4 view;
+uniform mat4 proj;
 void main(){
 
 	colorOut = colorIn;
-	gl_Position = view * model * vec4(vertexIn,1.0);
+	gl_Position = proj * view * model * vec4(vertexIn,1.0);
 
 }
