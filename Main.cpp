@@ -8,7 +8,7 @@
 #include "Quad.h"
 #include <glm.hpp>
 #include "Camera.h"
-
+#include <SDL_image.h>
 
 
 using namespace std;
