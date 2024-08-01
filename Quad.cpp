@@ -6,6 +6,8 @@ Quad::Quad() {
 
 	
 
+	
+
 	GLfloat vertices[] = { -0.5f,0.5f,0.0f,//TRIANGLE 1
 						   0.5f,0.5f,0.0f,
 						  -0.5f,-0.5f,0.0f,
@@ -16,24 +18,38 @@ Quad::Quad() {
 	};
 
 
-	GLfloat colors[] = { 1.0f,0.0f,0.0f,//TRIANGLE 1
-						   0.0f,0.0f,1.0f,
-						   0.0f,1.0f,1.0f,
+	GLfloat colors[] = {   1.0f,1.0f,1.0f,//TRIANGLE 1
+						   1.0f,1.0f,1.0f,
+						   1.0f,1.0f,1.0f,//BOTH WHITE
 
-						   0.0f,1.0f,1.0f,//TRIANGLE 2
-						   0.0f,0.0f,1.0f,
-						   0.0f,1.0f,0.0f
+						   1.0f,1.0f,1.0f,//TRIANGLE 2
+						   1.0f,1.0f,1.0f,
+						   1.0f,1.0f,1.0f
 	};
 
+
+	GLfloat UVs[] = { 0.0f,1.0f,//TRIANGLE 1
+					  1.0f,1.0f,
+					  0.0f,0.0f,
+
+					  0.0f,0.0f,//TRIANGLE 2
+					  1.0f,1.0f,
+					  1.0f,0.0f
+	};
 	
 	m_buffer.CreateBuffer(6); 
 	
 	m_buffer.FillVBO(Buffer::VERTEX_BUFFER, vertices, sizeof(vertices), Buffer::SINGLE);
 	m_buffer.FillVBO(Buffer::COLOR_BUFFER, colors, sizeof(colors), Buffer::SINGLE);
-	
+	m_buffer.FillVBO(Buffer::TEXTURE_BUFFER, UVs, sizeof(UVs), Buffer::SINGLE);
+
+
 	m_buffer.LinkBuffer("vertexIn", Buffer::VERTEX_BUFFER, Buffer::XYZ, Buffer::FLOAT);
 	m_buffer.LinkBuffer("colorIn", Buffer::COLOR_BUFFER, Buffer::RGB, Buffer::FLOAT);
+	m_buffer.LinkBuffer("textureIn", Buffer::TEXTURE_BUFFER, Buffer::UV, Buffer::FLOAT);
 
+
+	m_texture.Load("Textures/1.png");
 	m_position = glm::vec3(0.0f);
 }
 
@@ -74,5 +90,7 @@ void Quad::Update()
 
 void Quad::Render() {
 	Shader::Instance()->SendUniformData("model", m_model);
+	m_texture.Bind();
 	m_buffer.Render(Buffer::TRIANGLES);
+	m_texture.Unbind();
 }

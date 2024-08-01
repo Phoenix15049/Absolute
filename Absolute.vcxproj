@@ -145,6 +145,7 @@
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Main.frag" />

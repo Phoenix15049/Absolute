@@ -7,6 +7,7 @@ Buffer::Buffer() {
 	m_vertexVBO = 0;
 	m_colorVBO = 0;
 	m_totalVertices = 0;
+	m_textureVBO = 0;
 
 }
 
@@ -14,6 +15,7 @@ void Buffer::CreateBuffer(GLuint totalVertices)
 {
 	glGenBuffers(1, &m_vertexVBO);
 	glGenBuffers(1, &m_colorVBO);
+	glGenBuffers(1, &m_textureVBO);
 	glGenVertexArrays(1, &m_VAO);
 	m_totalVertices = totalVertices;
 }
@@ -26,8 +28,12 @@ void Buffer::FillVBO(VBOType vboType, GLfloat* data, GLsizeiptr bufferSize, Fill
 			glBindBuffer(GL_ARRAY_BUFFER, m_vertexVBO);
 			std::cout << "VERTEXBINDED\n";
 		}
-		else {
+		else if (vboType == COLOR_BUFFER) {
 			glBindBuffer(GL_ARRAY_BUFFER, m_colorVBO); 
+			std::cout << "COLORBINDED\n";
+		}
+		else {
+			glBindBuffer(GL_ARRAY_BUFFER, m_textureVBO);
 			std::cout << "COLORBINDED\n";
 		}
 		glBufferData(GL_ARRAY_BUFFER, bufferSize, data, fillType);
@@ -51,9 +57,13 @@ void Buffer::LinkBuffer(const std::string& attribute,
 			glBindBuffer(GL_ARRAY_BUFFER, m_vertexVBO);
 			std::cout << "VERTEXLINKED\n";
 		}
-		else {
+		else if (vboType == COLOR_BUFFER) {
 			glBindBuffer(GL_ARRAY_BUFFER, m_colorVBO);
-			std::cout << "COLORLINKED\n";
+			std::cout << "COLORBINDED\n";
+		}
+		else {
+			glBindBuffer(GL_ARRAY_BUFFER, m_textureVBO);
+			std::cout << "COLORBINDED\n";
 		}
 
 		glVertexAttribPointer(ID, componentType, GL_FLOAT, GL_FALSE, 0, nullptr);
@@ -73,6 +83,7 @@ void Buffer::DestroyBuffer()
 {
 	glDeleteBuffers(1, &m_vertexVBO);
 	glDeleteBuffers(1, &m_colorVBO);
+	glDeleteBuffers(1, &m_textureVBO);
 	glDeleteVertexArrays(1, &m_VAO);
 }
 
