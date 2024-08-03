@@ -9,7 +9,7 @@
 #include <glm.hpp>
 #include "Camera.h"
 #include <SDL_image.h>
-
+#include "Light.h"
 
 using namespace std;
 
@@ -40,6 +40,8 @@ int main(int argc,char* argv[]) {
 	Quad quad;
 	Camera camera;
 	camera.Set3DView();
+	Light light;
+
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -60,6 +62,9 @@ int main(int argc,char* argv[]) {
 		
 		/**/
 		camera.Update();
+		light.Update();
+		light.Render();
+		light.SendToShader();
 		quad.Update();
 		quad.Render();
 		

@@ -15,7 +15,7 @@ Camera::Camera() {
 
 void Camera::Set3DView()
 {
-	GLfloat FOV = 60.0f;
+	GLfloat FOV = 45.0f;
 	GLfloat aspectRatio = 1280.0f / 720.0f;
 
 	m_proj = glm::perspective(FOV, aspectRatio, 0.001f, 1000.0f);
@@ -53,4 +53,7 @@ void Camera::Update() {
 	m_view = glm::lookAt(m_position, m_position + m_direction, m_up);
 
 	Shader::Instance()->SendUniformData("view", m_view);
+	Shader::Instance()->SendUniformData("cameraPosition", m_position.x, m_position.y, m_position.z);
+
+
 }

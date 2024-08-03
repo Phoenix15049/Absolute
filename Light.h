@@ -1,31 +1,32 @@
-#ifndef QUAD_H
-#define QUAD_H
+#ifndef LIGHT_H
+#define LIGHT_H
 
 #include <glm.hpp>
-#include "glad.h"
 #include "Buffer.h"
-#include "Texture.h"
-class Quad {
+
+class Light {
 
 public:
 
-	Quad();
-	~Quad();
+	Light();
+	~Light();
 
+	
 	void Update();
 	void Render();
+	void SendToShader();
 
+protected:
 
-private:
 	Buffer m_buffer;
-	Texture m_texture;
+
 	glm::mat4 m_model;
 	glm::vec3 m_position;
-	
-	float m_shininess;
+
 	glm::vec3 m_ambient;
 	glm::vec3 m_diffuse;
 	glm::vec3 m_specular;
+
 };
 
-#endif // !QUAD_H
+#endif // !LIGHT_H
