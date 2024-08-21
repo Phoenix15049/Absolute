@@ -1,6 +1,6 @@
 # **Absolute Engine**
 
-![Absolute Engine Logo](path_to_logo_image_if_available)  
+
 *A small graphics engine built with OpenGL using C++ and C*
 
 ---
