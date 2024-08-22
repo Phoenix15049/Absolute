@@ -3,14 +3,8 @@
 #include <string>
 #include "gl.h"
 
-
-
-
-
-
 class Buffer
 {
-
 public:
 
 	enum class VBOType 
