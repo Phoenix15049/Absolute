@@ -1,6 +1,8 @@
 #pragma once
 
+
 #include <SDL.h>
+
 
 class Input
 {
@@ -36,17 +38,22 @@ private:
 	char m_keyUp;
 	char m_keyDown;
 
+
 	bool m_isXClicked;
 	bool m_isKeyPressed;
+
+
 
 	bool m_isLeftButtonClicked;
 	bool m_isRightButtonClicked;
 	bool m_isMiddleButtonClicked;
 
+
+
 	int m_mouseMotionX;
 	int m_mouseMotionY;
 
+
 	int m_mousePositionX;
 	int m_mousePositionY;
-
 };

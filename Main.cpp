@@ -9,6 +9,8 @@
 #include "Light.h"
 #include "Cube.h"
 
+
+
 bool isAppRunning = true;
 
 int main(int argc, char* argv[])
@@ -28,25 +30,25 @@ int main(int argc, char* argv[])
 	
 	if (!Shader::Instance()->CompileShaders("Shaders/Main.vert", Shader::ShaderType::VERTEX_SHADER))
 	{
-		//..
+		//CONSOLE ERROR CATCHING 
 	}
 
 	if (!Shader::Instance()->CompileShaders("Shaders/Main.frag", Shader::ShaderType::FRAGMENT_SHADER))
 	{
-		//..
+		//CONSOLE ERROR CATCHING 
 	}
 
 	Shader::Instance()->AttachShaders();
 	
 	if (!Shader::Instance()->LinkProgram())
 	{
-		//..
+		//CONSOLE ERROR CATCHING 
 	}
 
 	float xPos = 0.0f;
 	float yPos = 0.0f;
 
-	//================================================================
+	//==================================================================================
 
 	Quad quad;
 	Cube cube;
@@ -55,7 +57,7 @@ int main(int argc, char* argv[])
 
 	Light light;
 
-	//================================================================
+	//==================================================================================
 
 	while (isAppRunning)
 	{

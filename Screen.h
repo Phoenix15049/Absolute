@@ -14,6 +14,8 @@ public:
 	void Present();
 	void Shutdown();
 
+
+
 private:
 
 	Screen();
@@ -22,5 +24,6 @@ private:
 
 	SDL_Window* window;
 	SDL_GLContext context;
+
 
 };
