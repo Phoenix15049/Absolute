@@ -2,6 +2,11 @@
 #include "Cube.h"
 #include "Shader.h"
 
+
+
+
+
+
 Cube::Cube()
 {
 	GLfloat vertices[] = { -0.5f,  0.5f,  0.5f,
@@ -34,6 +39,9 @@ Cube::Cube()
 							0.5f, -0.5f, -0.5f,
 						   -0.5f, -0.5f, -0.5f };    //Bottom face
 
+
+
+
 	GLfloat colors[] = { 1.0f, 0.0f, 0.0f,
 						 1.0f, 0.0f, 0.0f,
 						 1.0f, 0.0f, 0.0f,
@@ -63,6 +71,9 @@ Cube::Cube()
 						 0.0f, 1.0f, 1.0f,
 						 0.0f, 1.0f, 1.0f, 
 						 0.0f, 1.0f, 1.0f };    //Bottom face (cyan)
+
+
+
 
 	GLuint indices[] = { 0,  1,  3,  3,  1,  2,      //Front face
 						 4,  5,  7,  7,  5,  6,      //Back face 
