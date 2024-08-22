@@ -2,6 +2,10 @@
 #include <SDL_image.h>
 #include "Texture.h"
 
+
+
+
+
 Texture::Texture()
 {
 	m_ID = 0;
@@ -11,6 +15,11 @@ void Texture::Bind()
 {
 	glBindTexture(GL_TEXTURE_2D, m_ID);
 }
+
+
+
+
+
 
 bool Texture::Load(const std::string& filename)
 {
