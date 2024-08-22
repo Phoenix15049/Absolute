@@ -42,9 +42,6 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Buffer.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -66,6 +63,12 @@
     <ClCompile Include="Quad.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gl.c">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
@@ -83,9 +86,6 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="glad.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Quad.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
@@ -94,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gl.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

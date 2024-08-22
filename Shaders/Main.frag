@@ -8,7 +8,6 @@ struct Light
 	vec3 specular;
 };
 
-
 struct Material
 {
 	float shininess;
@@ -16,7 +15,6 @@ struct Material
 	vec3 diffuse;
 	vec3 specular;
 };
-
 
 in vec3 colorOut;
 in vec3 vertexOut;
@@ -31,46 +29,47 @@ uniform bool isLit;
 uniform bool isTextured;
 uniform sampler2D textureImage;
 
-void main(){
-
-
-	if(isLit){
+void main()
+{
+	if(isLit)
+	{
 		
-
 		//ambient
 		vec3 ambientColor = light.ambient * material.ambient;
 
+		//==========================================================
 
 		//diffuse
-		vec3 normal = vec3(0.0,1.0,0.0);
-		vec3 lightDirection = normalize(light.position - vertexOut) ;
-		float lightIntesity = max(dot(lightDirection,normal),0.0);
+		vec3 normal = vec3(0.0, 1.0, 0.0);
+		vec3 lightDirection = normalize(light.position - vertexOut);
+		float lightIntesity = max(dot(lightDirection, normal), 0.0);
 		vec3 diffuseColor = light.diffuse * material.diffuse * lightIntesity;
+
+		//==========================================================
 
 		//specular
 		vec3 viewDirection = normalize(cameraPosition - vertexOut);
-		vec3 reflection = reflect(-lightDirection,normal);
-		float specularTerm = pow(max(dot(viewDirection,reflection),0.0),material.shininess);
+		vec3 reflection = reflect(-lightDirection, normal);
+		float specularTerm = pow(max(dot(viewDirection, reflection), 0.0), material.shininess);
 		vec3 specularColor = light.specular * material.specular * specularTerm;
+
 		vec3 finalColor = ambientColor + diffuseColor + specularColor;
 
-		if(isTextured){
-
-			fragColor = vec4(finalColor,1.0) * texture(textureImage,textureOut);
-		
-		}else{
-		
-			fragColor = vec4(finalColor,1.0);
-		
+		if(isTextured)
+		{
+			fragColor = vec4(finalColor, 1.0) * texture(textureImage, textureOut);
 		}
 
-	
-	}else{
-	
-		fragColor = vec4(colorOut,1.0);
-	
+		else
+		{
+			fragColor = vec4(finalColor, 1.0);
+		}
+
 	}
 
-	
+	else
+	{
+		fragColor = vec4(colorOut, 1.0);
+	}
 
 }

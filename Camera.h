@@ -1,10 +1,10 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once
 
 #include <glm.hpp>
-#include "glad.h"
+#include "gl.h"
 
-class Camera {
+class Camera
+{
 
 public:
 
@@ -18,11 +18,8 @@ protected:
 	glm::mat4 m_view;
 	glm::mat4 m_proj;
 
-
 	glm::vec3 m_position;
 	glm::vec3 m_direction;
 	glm::vec3 m_up;
 
 };
-
-#endif // !CAMERA_H

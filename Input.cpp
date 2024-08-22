@@ -1,11 +1,31 @@
-#include "Input.h"
 #include <iostream>
-#include <stdio.h>
-using namespace std;
+#include "Input.h"
+
 Input* Input::Instance()
 {
-	static Input* input = new Input;
-	return input;
+	static Input* inputObject = new Input();
+	return inputObject;
+}
+
+Input::Input()
+{
+
+	m_keyUp = 0;
+	m_keyDown = 0;
+
+	m_isXClicked = false;
+	m_isKeyPressed = false;
+
+	m_isLeftButtonClicked = false;
+	m_isRightButtonClicked = false;
+	m_isMiddleButtonClicked = false;
+
+	m_mouseMotionX = 0;
+	m_mouseMotionY = 0;
+
+	m_mousePositionX = 0;
+	m_mousePositionY = 0;
+
 }
 
 bool Input::IsXClicked()
@@ -65,110 +85,111 @@ int Input::GetMouseMotionY()
 
 void Input::Update()
 {
+
 	SDL_Event events;
-	m_mousePositionX = 0;
-	m_mousePositionY = 0;
 
 	m_mouseMotionX = 0;
 	m_mouseMotionY = 0;
+	m_mousePositionX = 0;
+	m_mousePositionY = 0;
 
-
-	while (SDL_PollEvent(&events)) {
+	while (SDL_PollEvent(&events))
+	{
 
 		switch (events.type)
 		{
-			//KEYDOWN
-			case SDL_KEYDOWN: {
+
+			case SDL_QUIT:
+			{
+				m_isXClicked = true;
+				break;
+			}
+
+			case SDL_KEYDOWN:
+			{
 				m_isKeyPressed = true;
 				m_keyDown = events.key.keysym.sym;
 				break;
 			}
-			//KEYUP
-			case SDL_KEYUP: {
+
+			case SDL_KEYUP:
+			{
 				m_isKeyPressed = false;
 				m_keyUp = events.key.keysym.sym;
 				break;
 			}
-			//XQUITKEY
-			case SDL_QUIT: {
-				m_isXClicked = true;
-				break;
-			}
-			//MOUSECLICKSDOWN
-			case SDL_MOUSEBUTTONDOWN: {
-				switch (events.button.button) {
-					case SDL_BUTTON_LEFT: {
+
+			case SDL_MOUSEBUTTONDOWN:
+			{
+				
+				switch (events.button.button)
+				{
+
+					case SDL_BUTTON_LEFT:
+					{
 						m_isLeftButtonClicked = true;
 						break;
 					}
-					case SDL_BUTTON_RIGHT: {
+
+					case SDL_BUTTON_RIGHT:
+					{
 						m_isRightButtonClicked = true;
 						break;
 					}
-					case SDL_BUTTON_MIDDLE: {
+
+					case SDL_BUTTON_MIDDLE:
+					{
 						m_isMiddleButtonClicked = true;
 						break;
 					}
+
 				}
+
 				break;
+
 			}
-			//MOUSECLICKSUP
-			case SDL_MOUSEBUTTONUP: {
-				switch (events.button.button) {
-					case SDL_BUTTON_LEFT: {
+
+			case SDL_MOUSEBUTTONUP:
+			{
+
+				switch (events.button.button)
+				{
+
+					case SDL_BUTTON_LEFT:
+					{
 						m_isLeftButtonClicked = false;
 						break;
 					}
-					case SDL_BUTTON_RIGHT: {
+
+					case SDL_BUTTON_RIGHT:
+					{
 						m_isRightButtonClicked = false;
 						break;
 					}
-					case SDL_BUTTON_MIDDLE: {
+
+					case SDL_BUTTON_MIDDLE:
+					{
 						m_isMiddleButtonClicked = false;
 						break;
 					}
+
 				}
+
 				break;
+
 			}
-			//MOUSECLICKSUP
-			case SDL_MOUSEMOTION: {
+
+			case SDL_MOUSEMOTION:
+			{
 				m_mouseMotionX = events.motion.xrel;
 				m_mouseMotionY = events.motion.yrel;
 				
-				m_mousePositionX = events.motion.x; 
-				m_mousePositionY = events.motion.y; 
-				break;
-			}
-			default:
-				break;
+				m_mousePositionX = events.motion.x;
+				m_mousePositionY = events.motion.y;
 			}
 
-
-
+		}
 
 	}
-
-}
-
-
-
-
-Input::Input()
-{
-	m_keyUp = 0;
-	m_keyDown = 0;
-
-	m_isXClicked = false;
-	m_isKeyPressed = false;
-
-	m_isLeftButtonClicked = false;
-	m_isRightButtonClicked = false;
-	m_isMiddleButtonClicked = false;
-
-	m_mousePositionX = 0;
-	m_mousePositionY = 0;
-
-	m_mouseMotionX = 0;
-	m_mouseMotionY = 0;
 
 }

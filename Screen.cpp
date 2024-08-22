@@ -1,8 +1,6 @@
-#include "Screen.h"
 #include <iostream>
-#include <stdio.h>
-#include "glad.h"
-using namespace std;
+#include "Screen.h"
+#include "gl.h"
 
 Screen* Screen::Instance()
 {
@@ -10,10 +8,17 @@ Screen* Screen::Instance()
 	return screen;
 }
 
+Screen::Screen()
+{
+	window = nullptr;
+	context = nullptr;
+}
+
 bool Screen::Initialize()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
-		cout << "INITIALIZE_ERROR on init" << endl;
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+	{
+		std::cout << "Error initializing SDL" << std::endl;
 		return false;
 	}
 
@@ -22,67 +27,57 @@ bool Screen::Initialize()
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
+
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-
-
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
 	//SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 
+	window = SDL_CreateWindow("Graphics Engine",
+							  SDL_WINDOWPOS_UNDEFINED,
+							  SDL_WINDOWPOS_UNDEFINED,
+							  1280, 720, SDL_WINDOW_OPENGL);
 
-	window = SDL_CreateWindow("Absolute",
-								SDL_WINDOWPOS_UNDEFINED,
-								SDL_WINDOWPOS_UNDEFINED,
-								1280, 720, SDL_WINDOW_OPENGL);
-
-	if (!window) {
-		cout << "INITIALIZE_ERROR,on creating Window" << endl;
+	if (!window)
+	{
+		std::cout << "Error creating SDL window" << std::endl;
 		return false;
 	}
-
 
 	context = SDL_GL_CreateContext(window);
-	if (!context) {
-		cout << "INITIALIZE_ERROR,on creating Context" << endl;
+
+	if (!context)
+	{
+		std::cout << "Error creating OpenGL context." << std::endl;
 		return false;
 	}
 
-
-	if (!gladLoadGL()) {
-		cout << "EXTENTION_ERROR,on loading extentions" << endl;
-		return false;
+	if (!gladLoaderLoadGL())
+	{
+		std::cout << "Error loading extensions!" << std::endl;
 	}
-
-
 
 	return true;
 }
 
 void Screen::ClearScreen()
 {
-
 	glClear(GL_COLOR_BUFFER_BIT);
-
 }
 
 void Screen::Present()
 {
-
 	SDL_GL_SwapWindow(window);
-
 }
 
-void Screen::ShutDown()
+void Screen::Shutdown()
 {
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
-Screen::Screen()
-{
-	window = nullptr;
-	context = nullptr;
-}

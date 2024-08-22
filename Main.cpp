@@ -1,87 +1,94 @@
-#include "Input.h"
-#include "Screen.h"
 #include <iostream>
 #include <SDL.h>
-#include <stdio.h>
-#include "glad.h"
+#include "Screen.h"
+#include "Input.h"
+#include "gl.h"
 #include "Shader.h"
 #include "Quad.h"
-#include <glm.hpp>
 #include "Camera.h"
-#include <SDL_image.h>
 #include "Light.h"
-
-using namespace std;
-
+#include "Cube.h"
 
 bool isAppRunning = true;
 
-
-int main(int argc,char* argv[]) {
+int main(int argc, char* argv[])
+{
 
 	Screen::Instance()->Initialize();
-
-
-	if (!Shader::Instance()->CreateProgram()) {
-		return 0;//CLOSING PROGRAM IF ERROR HAPPENS
-	}
-	if (!Shader::Instance()->CreateShaders()) {
+	
+	if (!Shader::Instance()->CreateProgram())
+	{
 		return 0;
 	}
-	 
-	Shader::Instance()->CompileShaders("Shaders/Main.vert",Shader::ShaderType::VERTEX_SHADER);
-	Shader::Instance()->CompileShaders("Shaders/Main.frag", Shader::ShaderType::FRAGMENT_SHADER);
+
+	if (!Shader::Instance()->CreateShaders())
+	{
+		return 0;
+	}
+	
+	if (!Shader::Instance()->CompileShaders("Shaders/Main.vert", Shader::ShaderType::VERTEX_SHADER))
+	{
+		//..
+	}
+
+	if (!Shader::Instance()->CompileShaders("Shaders/Main.frag", Shader::ShaderType::FRAGMENT_SHADER))
+	{
+		//..
+	}
 
 	Shader::Instance()->AttachShaders();
-	Shader::Instance()->LinkProgram();
 	
-	
-	
+	if (!Shader::Instance()->LinkProgram())
+	{
+		//..
+	}
+
+	float xPos = 0.0f;
+	float yPos = 0.0f;
+
+	//================================================================
+
 	Quad quad;
+	Cube cube;
 	Camera camera;
 	camera.Set3DView();
+
 	Light light;
 
+	//================================================================
 
-	float x = 0.0f;
-	float y = 0.0f;
-	
-	//=======================
-
-	//MainLoop
 	while (isAppRunning)
 	{
-		
+
 		Screen::Instance()->ClearScreen();
-		//Update and render stuff
 
 		Input::Instance()->Update();
-		
-		
+
+		char keyPressed = Input::Instance()->GetKeyDown();
+
 		isAppRunning = !Input::Instance()->IsXClicked();
-		
-		/**/
+
 		camera.Update();
+
 		light.Update();
 		light.Render();
 		light.SendToShader();
-		quad.Update();
-		quad.Render();
-		
+
+		//quad.Update();
+		//quad.Render();
+
+		cube.Update();
+		cube.Render();
+
 		Screen::Instance()->Present();
-		
+
 	}
-	
-	
-	
 
 	Shader::Instance()->DetachShaders();
 	Shader::Instance()->DestroyShaders();
 	Shader::Instance()->DestroyProgram();
-	Screen::Instance()->ShutDown();
 
-	//=======================
+	Screen::Instance()->Shutdown();	
 
-	system("pause");
 	return 0;
 }

@@ -5,23 +5,22 @@
 
 Light::Light()
 {
-	m_ambient = glm::vec3(1.0f); // ALL WHITE
+	m_ambient = glm::vec3(1.0f);
 	m_diffuse = glm::vec3(1.0f);
 	m_specular = glm::vec3(1.0f);
-	m_position = glm::vec3(0.0f,2.0f,0.0f);
+	m_position = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	GLfloat vertices[] = { 0.0f,0.0f,0.0f };
-	GLfloat colors[] = { 1.0f,1.0f,1.0f };
+	GLfloat vertices[] = { 0.0f, 0.0f, 0.0f };
+	GLfloat colors[] = { 1.0f, 1.0f, 1.0f };
 
 	m_buffer.CreateBuffer(1);
 
-	m_buffer.FillVBO(Buffer::VERTEX_BUFFER, vertices, sizeof(vertices), Buffer::SINGLE);
-	m_buffer.FillVBO(Buffer::COLOR_BUFFER, colors, sizeof(colors), Buffer::SINGLE);
+	m_buffer.FillVBO(Buffer::VBOType::VertexBuffer, vertices, sizeof(vertices), Buffer::FillType::Once);
+	m_buffer.FillVBO(Buffer::VBOType::ColorBuffer, colors, sizeof(colors), Buffer::FillType::Once);
 
-	m_buffer.LinkBuffer("vertexIn", Buffer::VERTEX_BUFFER, Buffer::XYZ, Buffer::FLOAT);
-	m_buffer.LinkBuffer("colorIn", Buffer::COLOR_BUFFER, Buffer::RGB, Buffer::FLOAT);
+	m_buffer.LinkVBO("vertexIn", Buffer::VBOType::VertexBuffer, Buffer::ComponentType::XYZ, Buffer::DataType::FloatData);
+	m_buffer.LinkVBO("colorIn", Buffer::VBOType::ColorBuffer, Buffer::ComponentType::RGB, Buffer::DataType::FloatData);
 }
-
 
 Light::~Light()
 {
@@ -30,28 +29,41 @@ Light::~Light()
 
 void Light::Update()
 {
-	if (Input::Instance()->IsKeyPressed()) {
+	if (Input::Instance()->IsKeyPressed())
+	{
 
-		char kp = Input::Instance()->GetKeyDown();
-		if (kp == 'j') {
+		if (Input::Instance()->GetKeyDown() == 'j')
+		{
 			m_position.x -= 0.01f;
 		}
-		if (kp == 'l') {
+
+		else if (Input::Instance()->GetKeyDown() == 'l')
+		{
 			m_position.x += 0.01f;
 		}
-		if (kp == 'i') {
+
+		else if (Input::Instance()->GetKeyDown() == 'i')
+		{
 			m_position.z -= 0.01f;
 		}
-		if (kp == 'k') {
+
+		else if (Input::Instance()->GetKeyDown() == 'k')
+		{
 			m_position.z += 0.01f;
 		}
-		if (kp == 'o') {
-			m_position.y -= 0.01f;
-		}
-		if (kp == 'u') {
+
+		else if (Input::Instance()->GetKeyDown() == 'u')
+		{
 			m_position.y += 0.01f;
 		}
+
+		else if (Input::Instance()->GetKeyDown() == 'o')
+		{
+			m_position.y -= 0.01f;
+		}
+
 	}
+
 	m_model = glm::mat4(1.0f);
 	m_model = glm::translate(m_model, m_position);
 
@@ -62,10 +74,9 @@ void Light::Render()
 	Shader::Instance()->SendUniformData("model", m_model);
 	Shader::Instance()->SendUniformData("isLit", false);
 	Shader::Instance()->SendUniformData("isTextured", false);
-
-
+	
 	glPointSize(20.0f);
-	m_buffer.Render(Buffer::POINTS);
+	m_buffer.Render(Buffer::DrawType::Points);
 }
 
 void Light::SendToShader()

@@ -1,105 +1,108 @@
 #include <fstream>
-#include "Shader.h"
 #include <iostream>
-using namespace std;
-Shader* Shader::Instance() {
+#include "Shader.h"
+
+Shader* Shader::Instance()
+{
 	static Shader* shaderObject = new Shader();
 	return shaderObject;
 }
 
-Shader::Shader() {
+Shader::Shader()
+{
 	m_shaderProgramID = 0;
 	m_vertexShaderID = 0;
 	m_fragmentShaderID = 0;
 }
+
 GLuint Shader::GetShaderProgramID()
 {
 	return m_shaderProgramID;
 }
+
 bool Shader::CreateProgram()
 {
 
-
 	m_shaderProgramID = glCreateProgram();
 
-
-	//BIFA
-	if (m_shaderProgramID == 0) {
-		cout << "ERROR CREATING SHADER PROGRAM" << endl;
+	if (m_shaderProgramID == 0)
+	{
+		std::cout << "Error creating shader program." << std::endl;
 		return false;
 	}
-	//BIFA
-
 
 	return true;
 }
 
 bool Shader::CreateShaders()
 {
+
 	m_vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+
+	if (m_vertexShaderID == 0)
+	{
+		std::cout << "Error creating vertex shader object." << std::endl;
+		return false;
+	}
+
 	m_fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
-	//BIFA
-	if (m_vertexShaderID == 0) {
-		cout << "ERROR CREATING VERTEX SHADER" << endl;
+	if (m_fragmentShaderID == 0)
+	{
+		std::cout << "Error creating fragment shader object." << std::endl;
 		return false;
 	}
-	else if (m_fragmentShaderID == 0) {
-		cout << "ERROR CREATING FRAGMENT SHADER" << endl;
-		return false;
-	}
-	//BIFA
+
 	return true;
 }
 
-bool Shader::CompileShaders(const string& filename,ShaderType shaderType)
+bool Shader::CompileShaders(const std::string& filename, ShaderType shaderType)
 {
-	fstream file;
-	string text;
-	string sourceCode;
+
+	std::fstream file;
+	std::string text;
+	std::string sourceCode;
 	GLuint shaderID;
 
 	shaderID = (shaderType == ShaderType::VERTEX_SHADER) ? m_vertexShaderID : m_fragmentShaderID;
 
 	file.open(filename);
-	
-	//BIFA
-	if (!file) {
-		cout << "ERROR READING SHADER FILE : " << filename << endl;
+
+	if (!file)
+	{
+		std::cout << "Error reading shader file: " << filename << std::endl;
 		return false;
 	}
-	//BIFA
 
-	while (!file.eof()) {
-		getline(file, text);
+	while (!file.eof())
+	{
+		std::getline(file, text);
 		sourceCode += text + "\n";
 	}
-	file.close();
-	
-	const GLchar* finalSourceCode = reinterpret_cast <const GLchar*>( sourceCode.c_str());
 
-	glShaderSource(shaderID,1,&finalSourceCode,nullptr);
+	file.close();
+
+	const GLchar* finalSourceCode = reinterpret_cast<const GLchar*>(sourceCode.c_str());
+	glShaderSource(shaderID, 1, &finalSourceCode, nullptr);
 
 	glCompileShader(shaderID);
 
 	GLint errorCode;
-
 	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &errorCode);
-	
-	//BIFA
-	if (errorCode == GL_TRUE) {
-		cout << "SHADER COMPILATION SUCCESSFUL" << endl;
-	}
-	else {
 
+	if (errorCode == GL_TRUE)
+	{
+		std::cout << "Shader compilation successful!" << std::endl;
+	}
+
+	else
+	{
 		GLchar errorMessage[1000];
 		GLsizei bufferSize = 1000;
+
 		glGetShaderInfoLog(shaderID, bufferSize, &bufferSize, errorMessage);
-		cout << errorMessage << endl;
+		std::cout << errorMessage << std::endl;
 	}
-	//BIFA
-
-
 
 	return true;
 }
@@ -108,7 +111,6 @@ void Shader::AttachShaders()
 {
 	glAttachShader(m_shaderProgramID, m_vertexShaderID);
 	glAttachShader(m_shaderProgramID, m_fragmentShaderID);
-	
 }
 
 bool Shader::LinkProgram()
@@ -117,28 +119,22 @@ bool Shader::LinkProgram()
 
 	glUseProgram(m_shaderProgramID);
 
-
-
-	//BIFA
-
 	GLint errorCode;
-
 	glGetProgramiv(m_shaderProgramID, GL_LINK_STATUS, &errorCode);
 
-
-	if (errorCode == GL_TRUE) {
-		cout << "SHADER LINKING SUCCESSFUL" << endl;
+	if (errorCode == GL_TRUE)
+	{
+		std::cout << "Shader linking successful!" << std::endl;
 	}
-	else {
 
+	else
+	{
 		GLchar errorMessage[1000];
 		GLsizei bufferSize = 1000;
+
 		glGetProgramInfoLog(m_shaderProgramID, bufferSize, &bufferSize, errorMessage);
-		cout << errorMessage << endl;
+		std::cout << errorMessage << std::endl;
 	}
-	//BIFA
-
-
 
 	return true;
 }
@@ -160,89 +156,87 @@ void Shader::DestroyProgram()
 	glDeleteProgram(m_shaderProgramID);
 }
 
-bool Shader::SendUniformData(const string& uniformName, GLint data)
+bool Shader::SendUniformData(const std::string& uniformName, GLint data)
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
-	
-	//BIFA
 
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used."<<endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
+
 	glUniform1i(ID, data);
 	return true;
-
-	//BIFA
 }
 
-bool Shader::SendUniformData(const string& uniformName, GLuint data)
+bool Shader::SendUniformData(const std::string& uniformName, GLuint data)
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
 
-	//BIFA
-
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used." << endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
+
 	glUniform1ui(ID, data);
 	return true;
 }
 
-bool Shader::SendUniformData(const string& uniformName, GLfloat data)
+bool Shader::SendUniformData(const std::string& uniformName, GLfloat data)
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
 
-	//BIFA
-
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used." << endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
+
 	glUniform1f(ID, data);
 	return true;
 }
 
-bool Shader::SendUniformData(const string& uniformName, GLfloat x, GLfloat y)
+bool Shader::SendUniformData(const std::string& uniformName, GLfloat x, GLfloat y)
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
 
-	//BIFA
-
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used." << endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
-	glUniform2f(ID, x,y);
+
+	glUniform2f(ID, x, y);
 	return true;
 }
 
-bool Shader::SendUniformData(const string& uniformName, GLfloat x, GLfloat y, GLfloat z)
+bool Shader::SendUniformData(const std::string& uniformName, GLfloat x, GLfloat y, GLfloat z)
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
 
-	//BIFA
-
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used." << endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
-	glUniform3f(ID, x, y,z);
+
+	glUniform3f(ID, x, y, z);
 	return true;
 }
 
-bool Shader::SendUniformData(const string& uniformName, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+bool Shader::SendUniformData(const std::string& uniformName, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
 
-	//BIFA
-
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used." << endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
-	glUniform4f(ID, x, y, z,w);
+
+	glUniform4f(ID, x, y, z, w);
 	return true;
 }
 
@@ -250,11 +244,12 @@ bool Shader::SendUniformData(const std::string& uniformName, const glm::mat4& da
 {
 	GLint ID = glGetUniformLocation(m_shaderProgramID, uniformName.c_str());
 
-	if (ID == -1) {
-		cout << "SHADER VARIABLE : " << uniformName << " not found or not used." << endl;
+	if (ID == -1)
+	{
+		std::cout << "Shader variable " << uniformName << " not found or not used." << std::endl;
 		return false;
 	}
+
 	glUniformMatrix4fv(ID, 1, GL_FALSE, &data[0][0]);
 	return true;
 }
-

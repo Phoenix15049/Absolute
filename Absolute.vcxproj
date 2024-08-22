@@ -139,7 +139,8 @@
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="glad.c" />
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="gl.c" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -151,7 +152,8 @@
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="glad.h" />
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="gl.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Quad.h" />

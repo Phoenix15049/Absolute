@@ -1,6 +1,6 @@
 #version 460
 
-in vec3 vertexIn; 
+in vec3 vertexIn;
 in vec3 colorIn;
 in vec2 textureIn;
 
@@ -12,14 +12,12 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 proj;
 
-
-void main(){
-
+void main()
+{
 	colorOut = colorIn;
 	textureOut = textureIn;
 
-	vertexOut = (model * vec4(vertexIn,1.0)).xyz;
+	vertexOut = (model * vec4(vertexIn, 1.0)).xyz;
 
-	gl_Position = proj * view * model * vec4(vertexIn,1.0);
-
+	gl_Position = proj * view * model * vec4(vertexIn, 1.0);
 }

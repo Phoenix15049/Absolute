@@ -1,12 +1,13 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#pragma once
 
 #include <string>
-#include "glad.h"
+#include "gl.h"
 
 class Texture
 {
+
 public:
+
 	Texture();
 
 	void Bind();
@@ -15,8 +16,7 @@ public:
 	void Unload();
 
 private:
+
 	GLuint m_ID;
 
 };
-
-#endif // !TEXTURE_H

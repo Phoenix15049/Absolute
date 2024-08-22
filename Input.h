@@ -1,15 +1,14 @@
-#ifndef INPUT_H
-#define INPUT_H
+#pragma once
 
 #include <SDL.h>
 
-
-class Input {
+class Input
+{
 
 public:
+
 	static Input* Instance();
 
-public:
 	bool IsXClicked();
 	bool IsKeyPressed();
 
@@ -26,15 +25,14 @@ public:
 	int GetMouseMotionX();
 	int GetMouseMotionY();
 
-public:
-	void Update();
+	void Update();	
 
 private:
+
 	Input();
 	Input(const Input&);
-	Input& operator =(const Input&);
+	Input& operator=(Input&);
 
-private : 
 	char m_keyUp;
 	char m_keyDown;
 
@@ -45,23 +43,10 @@ private :
 	bool m_isRightButtonClicked;
 	bool m_isMiddleButtonClicked;
 
-	int m_mousePositionX;
-	int m_mousePositionY;
-
 	int m_mouseMotionX;
 	int m_mouseMotionY;
 
+	int m_mousePositionX;
+	int m_mousePositionY;
+
 };
-
-
-
-
-
-
-
-
-
-
-
-
-#endif // !INPUT_H

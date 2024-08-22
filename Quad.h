@@ -1,11 +1,12 @@
-#ifndef QUAD_H
-#define QUAD_H
+#pragma once
 
 #include <glm.hpp>
-#include "glad.h"
+#include "gl.h"
 #include "Buffer.h"
 #include "Texture.h"
-class Quad {
+
+class Quad
+{
 
 public:
 
@@ -15,17 +16,17 @@ public:
 	void Update();
 	void Render();
 
-
 private:
-	Buffer m_buffer;
+
+	Buffer m_buffer;	
 	Texture m_texture;
+
 	glm::mat4 m_model;
 	glm::vec3 m_position;
-	
+
 	float m_shininess;
 	glm::vec3 m_ambient;
 	glm::vec3 m_diffuse;
 	glm::vec3 m_specular;
-};
 
-#endif // !QUAD_H
+};
