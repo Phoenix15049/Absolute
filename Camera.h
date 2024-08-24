@@ -2,6 +2,7 @@
 
 #include <glm.hpp>
 #include "gl.h"
+#include "Shader.h"
 
 class Camera
 {
@@ -12,6 +13,7 @@ public:
 
 	void Set3DView();
 	void Update();
+	void SendToShader(const Shader& shader);
 
 protected:
 

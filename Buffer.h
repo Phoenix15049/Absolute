@@ -2,16 +2,19 @@
 
 #include <string>
 #include "gl.h"
+#include "Shader.h"
 
 class Buffer
 {
+
 public:
 
 	enum class VBOType 
 	{ 
 		VertexBuffer, 
 		ColorBuffer, 
-		TextureBuffer 
+		TextureBuffer,
+		NormalBuffer
 	};
 	
 	enum class ComponentType 
@@ -55,7 +58,8 @@ public:
 		         FillType fillType);
 
 	void LinkEBO();
-	void LinkVBO(const std::string& attribute, 
+	void LinkVBO(const Shader& shader, 
+		         const std::string& attribute, 
 		         VBOType vboType,
 		         ComponentType componentType, 
 		         DataType dataType);
@@ -70,9 +74,12 @@ private:
 
 	GLuint m_VAO;
 	GLuint m_EBO;
+
 	GLuint m_vertexVBO;
 	GLuint m_colorVBO;
 	GLuint m_textureVBO;
+	GLuint m_normalVBO;
+
 	GLuint m_totalVertices;
 
 };

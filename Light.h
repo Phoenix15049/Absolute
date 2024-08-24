@@ -2,6 +2,7 @@
 
 #include <glm.hpp>
 #include "Buffer.h"
+#include "Shader.h"
 
 class Light
 {
@@ -12,8 +13,8 @@ public:
 	~Light();
 
 	void Update();
-	void Render();
-	void SendToShader();
+	void Render(const Shader& shader);
+	void SendToShader(const Shader& shader);
 	
 private:
 

@@ -16,9 +16,11 @@ struct Material
 	vec3 specular;
 };
 
-in vec3 colorOut;
+in vec4 colorOut;
 in vec3 vertexOut;
 in vec2 textureOut;
+in vec3 normalOut;
+
 out vec4 fragColor;
 
 uniform Light light;
@@ -40,7 +42,7 @@ void main()
 		//==========================================================
 
 		//diffuse
-		vec3 normal = vec3(0.0, 1.0, 0.0);
+		vec3 normal = normalize(normalOut);
 		vec3 lightDirection = normalize(light.position - vertexOut);
 		float lightIntesity = max(dot(lightDirection, normal), 0.0);
 		vec3 diffuseColor = light.diffuse * material.diffuse * lightIntesity;
@@ -69,7 +71,7 @@ void main()
 
 	else
 	{
-		fragColor = vec4(colorOut, 1.0);
+		fragColor = colorOut;
 	}
 
 }

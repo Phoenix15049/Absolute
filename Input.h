@@ -1,8 +1,6 @@
 #pragma once
 
-
 #include <SDL.h>
-
 
 class Input
 {
@@ -50,4 +48,5 @@ private:
 
 	int m_mousePositionX;
 	int m_mousePositionY;
+
 };

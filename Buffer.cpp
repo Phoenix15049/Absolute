@@ -5,9 +5,12 @@ Buffer::Buffer()
 {
 	m_VAO = 0;
 	m_EBO = 0;
+
 	m_vertexVBO = 0;
 	m_colorVBO = 0;
 	m_textureVBO = 0;
+	m_normalVBO = 0;
+
 	m_totalVertices = 0;
 	m_hasEBO = false;
 }
@@ -17,6 +20,7 @@ void Buffer::CreateBuffer(GLuint totalVertices, bool hasEBO)
 	glGenBuffers(1, &m_vertexVBO);
 	glGenBuffers(1, &m_colorVBO);
 	glGenBuffers(1, &m_textureVBO);
+	glGenBuffers(1, &m_normalVBO);
 	glGenVertexArrays(1, &m_VAO);
 
 	if (hasEBO)
@@ -48,9 +52,14 @@ void Buffer::FillVBO(VBOType vboType, GLfloat* data, GLsizeiptr bufferSize, Fill
 			glBindBuffer(GL_ARRAY_BUFFER, m_colorVBO);
 		}
 
-		else
+		else if (vboType == VBOType::TextureBuffer)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, m_textureVBO);
+		}
+
+		else
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, m_normalVBO);
 		}
 
 		glBufferData(GL_ARRAY_BUFFER, bufferSize, data, static_cast<GLenum>(fillType));
@@ -65,10 +74,9 @@ void Buffer::LinkEBO()
 	glBindVertexArray(0);
 }
 
-void Buffer::LinkVBO(const std::string& attribute, VBOType vboType, ComponentType componentType, DataType dataType)
+void Buffer::LinkVBO(const Shader& shader, const std::string& attribute, VBOType vboType, ComponentType componentType, DataType dataType)
 {
-	
-	GLuint shaderProgramID = Shader::Instance()->GetShaderProgramID();
+	GLuint shaderProgramID = shader.GetShaderProgramID();
 
 	GLint ID = glGetAttribLocation(shaderProgramID, attribute.c_str());
 
@@ -84,9 +92,14 @@ void Buffer::LinkVBO(const std::string& attribute, VBOType vboType, ComponentTyp
 			glBindBuffer(GL_ARRAY_BUFFER, m_colorVBO);
 		}
 
-		else
+		else if (vboType == VBOType::TextureBuffer)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, m_textureVBO);
+		}
+
+		else
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, m_normalVBO);
 		}
 
 		glVertexAttribPointer(ID, static_cast<GLint>(componentType), GL_FLOAT, GL_FALSE, 0, nullptr);
@@ -119,6 +132,7 @@ void Buffer::DestroyBuffer()
 	glDeleteBuffers(1, &m_vertexVBO);
 	glDeleteBuffers(1, &m_colorVBO);
 	glDeleteBuffers(1, &m_textureVBO);
+	glDeleteBuffers(1, &m_normalVBO);
 	glDeleteVertexArrays(1, &m_VAO);
 	glDeleteBuffers(1, &m_EBO);
 }
