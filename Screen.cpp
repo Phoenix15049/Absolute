@@ -37,7 +37,7 @@ bool Screen::Initialize()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 
-	window = SDL_CreateWindow("Absolute",
+	window = SDL_CreateWindow("Graphics Engine",
 							  SDL_WINDOWPOS_UNDEFINED,
 							  SDL_WINDOWPOS_UNDEFINED,
 							  1280, 720, SDL_WINDOW_OPENGL);

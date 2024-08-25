@@ -10,7 +10,7 @@ public:
 
 	Texture();
 
-	void Bind();
+	void Bind() const;
 	bool Load(const std::string& filename);
 	void Unbind();
 	void Unload();

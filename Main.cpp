@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Cube.h"
+#include "Model.h"
 
 bool isAppRunning = true;
 
@@ -26,6 +27,9 @@ int main(int argc, char* argv[])
 
 	Quad quad;
 	Cube cube;
+	Model model;
+	model.Load("Models/Armchair.obj");
+
 	Camera camera;
 	camera.Set3DView();
 
@@ -54,8 +58,11 @@ int main(int argc, char* argv[])
 		//quad.Update();
 		//quad.Render(lightShader);
 
-		cube.Update();
-		cube.Render(lightShader);
+		//cube.Update();
+		//cube.Render(lightShader);
+
+		model.Update();
+		model.Render(lightShader);
 
 		Screen::Instance()->Present();
 
