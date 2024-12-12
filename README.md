@@ -28,11 +28,11 @@ Absolute Engine is a **small 3D graphics engine** aimed at developers looking fo
 ## **Features**
 - Real-time rendering with OpenGL
 - Basic and advanced lighting models (Phong, Blinn-Phong)
-- Scene management system (i said inshallah)
-- Support for standard 3D model formats (OBJ for now,later maybe FBX)
-- Basic post-processing effects (Bloom, HDR)
+- Scene management system 
+- Support for standard 3D model formats (OBJ for now)
+- Basic post-processing effects (HDR)
 - Cross-platform windowing and input management
-- Simple integration with physics engines ()
+- Simple integration with physics engines
 
 ![Absolute](https://raw.githubusercontent.com/Phoenix15049/Absolute/master/Assets/1.gif)
 
