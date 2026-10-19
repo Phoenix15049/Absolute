@@ -361,5 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Materials/Armchair.mtl
-/Materials/Cube.mtl
+
+# Engine assets and runtime libraries
+!/Models/*.obj
+!/Libraries/SDL/bin/
+
+# Engine runtime files
+/settings.ini
+/imgui.ini
+/Screenshots/

@@ -1,113 +1,267 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{1c717611-68f0-515f-8c44-76dfdbd5f0de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Libraries\Glad">
+      <UniqueIdentifier>{2253862c-ef75-5518-8a3d-23530b0e9f7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Libraries\ImGui">
+      <UniqueIdentifier>{8c2a4822-b55d-5200-8ff0-7045bf882aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\ImGui\backends">
+      <UniqueIdentifier>{b4c0a885-1d12-507f-86c9-4a011687bbfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials">
+      <UniqueIdentifier>{e790762a-4bf1-53ce-bc98-c0b63f3dd095}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shaders">
-      <UniqueIdentifier>{d54780ae-10ce-4b0d-bb13-35ff9bcf94da}</UniqueIdentifier>
+      <UniqueIdentifier>{afe081dd-74ef-586d-b072-36cc39a9fe30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Core">
-      <UniqueIdentifier>{4879198d-c69f-445a-b2a3-d32f1181b085}</UniqueIdentifier>
+    <Filter Include="Source">
+      <UniqueIdentifier>{cc46ac64-f1be-5b3e-b972-23eac51069ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core">
-      <UniqueIdentifier>{1d8f82de-65e2-4dfb-a878-1e750df1ba11}</UniqueIdentifier>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{32b82ad1-57f2-56bc-b014-0f3c4dc6f1ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{c1081220-631f-4f24-afc3-6d7a8cbed141}</UniqueIdentifier>
+    <Filter Include="Source\Editor">
+      <UniqueIdentifier>{872e4d73-d1e0-5279-9ba0-100ee7b07870}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components">
-      <UniqueIdentifier>{f4bde58c-6323-4fb5-ae98-dd34c547f596}</UniqueIdentifier>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{59901b7a-7cdd-5cec-baa6-a1ffcaae4595}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Objects">
-      <UniqueIdentifier>{d09305b9-9c22-4e0b-a4ef-a2fd99fab7d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{a1c98831-2dac-4ca7-8f75-1eee8e658452}</UniqueIdentifier>
+    <Filter Include="Source\Scene">
+      <UniqueIdentifier>{4e10c886-9d1e-59f8-ba58-9392f2b116fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Source\Core\Application.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Source\Core\Input.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer.cpp">
-      <Filter>Source Files\Components</Filter>
+    <ClCompile Include="Source\Core\Log.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Components</Filter>
+    <ClCompile Include="Source\Core\Math.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Source\Core\Platform.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Source\Core\Settings.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Source\Core\Window.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Source\Editor\Editor.cpp">
+      <Filter>Source\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\Renderer\DebugDraw.cpp">
+      <Filter>Source\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="gl.c">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Source\Renderer\Framebuffer.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Mesh.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Primitives.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Renderer.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Shader.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Texture.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\AssetManager.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Camera.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\ModelLoader.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Scene.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\Glad\gl.c">
+      <Filter>Libraries\Glad</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\ImGui\imgui.cpp">
+      <Filter>Libraries\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\ImGui\imgui_draw.cpp">
+      <Filter>Libraries\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\ImGui\imgui_tables.cpp">
+      <Filter>Libraries\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\ImGui\imgui_widgets.cpp">
+      <Filter>Libraries\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\ImGui\backends\imgui_impl_opengl3.cpp">
+      <Filter>Libraries\ImGui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\ImGui\backends\imgui_impl_sdl2.cpp">
+      <Filter>Libraries\ImGui\backends</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="Source\Core\Application.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="Source\Core\Input.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Source\Core\Log.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\Components</Filter>
+    <ClInclude Include="Source\Core\Math.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="Source\Core\Platform.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Header Files\Objects</Filter>
+    <ClInclude Include="Source\Core\Settings.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Header Files\Objects</Filter>
+    <ClInclude Include="Source\Core\Window.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Objects</Filter>
+    <ClInclude Include="Source\Editor\Editor.h">
+      <Filter>Source\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\Renderer\DebugDraw.h">
+      <Filter>Source\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="gl.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="Source\Renderer\Framebuffer.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Mesh.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Primitives.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Renderer.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Shader.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Texture.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\AssetManager.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Camera.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Model.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Scene.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Glad\gl.h">
+      <Filter>Libraries\Glad</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Glad\khrplatform.h">
+      <Filter>Libraries\Glad</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imconfig.h">
+      <Filter>Libraries\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imgui.h">
+      <Filter>Libraries\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imgui_internal.h">
+      <Filter>Libraries\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imstb_rectpack.h">
+      <Filter>Libraries\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imstb_textedit.h">
+      <Filter>Libraries\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imstb_truetype.h">
+      <Filter>Libraries\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\backends\imgui_impl_opengl3.h">
+      <Filter>Libraries\ImGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\backends\imgui_impl_opengl3_loader.h">
+      <Filter>Libraries\ImGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\backends\imgui_impl_sdl2.h">
+      <Filter>Libraries\ImGui\backends</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Main.frag">
+    <None Include="Shaders\BloomDown.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Main.vert">
+    <None Include="Shaders\BloomUp.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\Common.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Debug.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Debug.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\FXAA.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Fullscreen.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Grid.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Grid.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lit.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lit.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Post.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Shadow.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Shadow.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Sky.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Materials\Armchair.mtl">
+      <Filter>Materials</Filter>
+    </None>
+    <None Include="Materials\Cube.mtl">
+      <Filter>Materials</Filter>
+    </None>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>
